@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Problem Set 2, hangman.py
 # Name: 
 # Collaborators:
@@ -11,6 +12,7 @@
 # (so be sure to read the docstrings!)
 import random
 import string
+from six.moves import input
 
 WORDLIST_FILENAME = "words.txt"
 
@@ -96,7 +98,6 @@ def get_available_letters(letters_guessed):
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
     available_letters = ""
-    # alphabets = "abcdefghijklmnopqrstuvwxyz"
     for char in string.ascii_lowercase:
         if char not in letters_guessed:
             available_letters += char
@@ -130,7 +131,36 @@ def hangman(secret_word):
     Follows the other limitations detailed in the problem write-up.
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    guesses_remaining = 6
+    warnings_remaining = 3
+    iswordguessed = False
+    letters_guessed = []
+
+    print("Welcome to the game Hangman!\nI am thinking of a word that is " + str(len(
+        secret_word)) + " letters long.")
+    print("You have " + str(warnings_remaining) + " warnings left.")
+
+    while guesses_remaining > 0 & iswordguessed == False:
+        print("---------------")
+        print("You have " + str(guesses_remaining) + " guesses left.")
+        print("Available letters: " + get_available_letters(letters_guessed))
+        letter = (input("Please guess a letter:")).lower()
+        if str.isalpha(letter):
+            letters_guessed.append(letter)
+            if letter in secret_word:
+                print("Good guess:" + get_guessed_word(secret_word, letters_guessed))
+            else:
+                guesses_remaining -= 1
+                print("Oops! That letter is not in my word")
+                print("Please guess a letter:" + get_guessed_word(secret_word, letters_guessed))
+
+        else:
+            warnings_remaining -= 1
+            print("Oops! That is not a letter. You have " + str(
+                warnings_remaining) + " warnings left: " + get_guessed_word(
+                secret_word, letters_guessed))
+
+        iswordguessed = True
 
 
 # When you've completed your hangman function, scroll down to the bottom
@@ -207,8 +237,6 @@ def hangman_with_hints(secret_word):
 
 
 if __name__ == "__main__":
-    pass
-
     # To test part 2, comment out the pass line above and
     # uncomment the following two lines.
 
@@ -232,3 +260,4 @@ if __name__ == "__main__":
 
     # secret_word = choose_word(wordlist)
     # hangman_with_hints(secret_word)
+    hangman("abcdea")
