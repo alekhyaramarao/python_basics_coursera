@@ -2,8 +2,8 @@
 
 def main():
     x=inputMatrix()
-    y=inputMatrix()
     printMatrix(x)
+    y=inputMatrix()   
     printMatrix(y)
     z=addMatrices(x,y)
     printMatrix(z)
@@ -13,17 +13,17 @@ def main():
 def inputMatrix():
     rows=int(input("Enter number of rows:"))
     columns=int(input("Enter number of columns:"))
-    m= []
-    for i in range(0,rows):
-        r=[]
-        for j in range(0,columns):
-            r.append(int(input("Enter the element at ["+str(i)+"]["+str(j)+"]")))
-        m.append(r)
+    m= [[int(input("Enter the element at ["+str(i)+"]["+str(j)+"]")) for j in range(0,columns)] for i in range(0,rows)]           
     return m
 
 def printMatrix(matrix):
-    for row in matrix:        
-        print(*row, sep=" ")
+    if len(matrix)!=0:
+        for row in matrix:        
+            print(*row, sep=" ")
+    else:
+        print("The matrix is empty/does not exist")
+    
+        
 
 def nRows(matrix):
     return len(matrix)
@@ -31,21 +31,25 @@ def nRows(matrix):
 def nColumns(matrix):
     return len(matrix[0])
 
-def addMatrices(m1,m2):
-    sum=[]
-    if (nRows(m1)==nRows(m2)) and (nColumns(m1)==nColumns(m2)):        
-        for i in range(0,nRows(m1)):
-            srow=[]
-            for j in range(0,nColumns(m1)):
-                s=m1[i][j]+m2[i][j]
-                srow.append(s)
-            sum.append(srow)
-    return sum
+def addMatrices(m1,m2):    
+    sum=[[m1[i][j]+m2[i][j] for j in range(0,nColumns(m1))] for i in range(0,nRows(m1)) if ((nRows(m1)==nRows(m2)) and (nColumns(m1)==nColumns(m2)))]    
+    if len(sum)!=0:
+        return sum
+    else:
+        print("Addition of matrices with different number of rows and columns is not possible")
+        return []
+
+
+def subMatrices(m1,m2):
+    sub=[[m1[i][j]-m2[i][j] for j in range(0,nColumns(m1))] for i in range(0,nRows(m1)) if ((nRows(m1)==nRows(m2)) and (nColumns(m1)==nColumns(m2)))]    
+    if len(sub)!=0:
+        return sub
+    else:
+        print("Subtraction of matrices with different number of rows and columns is not possible")
+        return []
     
                 
-    
-    
-  
+
 
 if __name__ == "__main__":
     main()
