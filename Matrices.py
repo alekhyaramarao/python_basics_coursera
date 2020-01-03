@@ -5,7 +5,7 @@ def main():
     printMatrix(x)
     y=inputMatrix()   
     printMatrix(y)
-    z=addMatrices(x,y)
+    z=multiplyMatrices(x,y)
     printMatrix(z)
     
 
@@ -49,7 +49,23 @@ def subMatrices(m1,m2):
         return []
     
                 
+def multiplyMatrices(m1,m2):
+     m=[]
+     if(nColumns(m1)==nRows(m2)):
+         n=nColumns(m1)
+         for i in range(0,nRows(m1)):
+             row=[]
+             for j in range(0,nColumns(m2)):
+                 sum=0
+                 for x in range(0,n):
+                     sum+=m1[i][x]*m2[x][j]
+                 row.append(sum)
+             m.append(row)
+     return m
 
+                 
+    
+    
 
 if __name__ == "__main__":
     main()
