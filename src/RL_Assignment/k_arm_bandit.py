@@ -151,7 +151,7 @@ def simulate_ucb(num_arms, num_simualtion, num_steps, c):
     :return: average reward and optimal action
     """
     # arms = {i: normal(0, 1) for i in range(num_arms)}
-    arms = random.normal(0, sqrt(10), num_arms)
+    arms = random.normal(0, sqrt(1), num_arms)
     arm_with_max_reward = argmax(arms)
     result_sim = []
     optimal_action_sim = []
@@ -211,7 +211,7 @@ def main():
     plt.show()
     plt.close()
 
-    # # Plotting for Greedy
+    # Plotting for Greedy
     for key, val in results_greedy.items():
         plt.plot(val[0], label=key)
 
