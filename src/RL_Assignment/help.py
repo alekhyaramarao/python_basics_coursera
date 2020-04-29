@@ -7,8 +7,35 @@ from numpy import random, sqrt, log, sin, cos, pi, argmax
 # for i in range(10):
 #     print(random.choice(10))
 
-for i in range(10):
-    print(argmax([1,2,3,4,77,3,23,77]))
+# for i in range(10):
+#     print(argmax([1,2,3,4,77,3,23,77]))
+
+# for i in range(10):
+#
+#     # print(random.choice((1,6),None,False ,(.3,.7)))
+#     print(random.choice([i for i in range(3)]))
+
+# l1=[[1 for i in range(4)] for j in range(4)]
+# l2=[[1 for i in range(4)] for j in range(4)]
+# print(l1)
+# print(l1+l2)
+
+
+list1 = [[1 for i in range(4)] for j in range(4)]
+list2 = [[1 for i in range(4)] for j in range(4)]
+
+sum_list = [[0 for i in range(4)] for j in range(4)]
+for i in range(4):
+    for j in range(4):
+        sum_list[i][j]=list1[i][j]+list2[i][j]
+
+print(sum_list)
+# for (item1, item2) in zip(list1, list2):
+#     for(x,y) in zip(item1,item2):
+#         sum_list.append(x+y)
+
+
+
 
 
 # def average_reward(rsim):
